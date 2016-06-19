@@ -39,7 +39,7 @@
   </bean>
 
 
-  <bean id="requiredJta" class="org.apache.camel.spring.spi.SpringTransactionPolicy">
+  <bean id="PROPAGATION_REQUIRED" class="org.apache.camel.spring.spi.SpringTransactionPolicy">
   <property name="transactionManager" ref="jtaTransactionManager" />
   <property name="propagationBehaviorName" value="PROPAGATION_REQUIRED" />
   </bean>
@@ -138,7 +138,7 @@
   <camelContext xmlns="http://camel.apache.org/schema/spring" trace="true">
   <route id="jms-jms-xa" trace="false">
   <from uri="amqSourceXA:queue:jms-xa-demo.in" />
-  <transacted ref="requiredJta"/>
+  <transacted ref="PROPAGATION_REQUIRED"/>
   <log message="Received msg with JMSRedelivered:${header.JMSRedelivered}" />
   <process ref="testProcessor" />
     <!--<to uri="log:hello" />-->
